@@ -15,9 +15,6 @@ class ItemsProvider(Module):
 
         return self._items[0:number_of_items]
 
-    def __call__(self):
-        return self.get()
-
 class BooksProvider(Module):
     @inject
     def __init__(self, items:list):
@@ -31,7 +28,4 @@ class BooksProvider(Module):
             number_of_items = len(self._items)
 
         return self._items[0:number_of_items]
-
-    def __call__(self):
-        return self.get()
 

@@ -1,0 +1,51 @@
+swagger: "2.0"
+
+info:
+    title: "My first API"
+    version: "1.0"
+
+basePath: /v1.0
+
+paths:
+    /items/:
+        get:
+            responses:
+                '200':
+                    description: 'Fetch a list of items'
+                    schema:
+                        type: array
+                        items:
+                            $ref: '#/definitions/Item'
+        post:
+            tags:
+                - Item
+            summary: Create an item
+            description: Create a new item
+            parameters:
+                - name: item
+                  in: body
+                  description: Item to create
+                  required: True
+                  schema:
+                    type: object
+                    properties:
+                      name:
+                          type: string
+                          description: name of item to create
+            responses:
+                201:
+                    description: Successfully created item 
+                    schema:
+                        type: object
+                        $ref: '#/definitions/Item'
+
+definitions:
+    Item:
+        type: object
+        properties:
+            item_id:
+                type: string
+                description: Id of the item
+            name: { type: string }
+            timestamp: { type: string }
+
