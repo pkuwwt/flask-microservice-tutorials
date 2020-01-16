@@ -1,0 +1,63 @@
+openapi: "3.0.0"
+
+info:
+    title: "My first API"
+    version: "1.0"
+
+servers:
+    - url: /v1.0
+
+paths:
+    /items/:
+        get:
+            tags:
+                - 'API Example'
+            responses:
+                '200':
+                    description: 'Fetch a list of items'
+                    content:
+                        application/json:
+                            schema:
+                                type: array
+                                items:
+                                    $ref: '#/components/schemas/Item'
+        post:
+            tags:
+                - 'API Example'
+            summary: Create an item
+            description: Create a new item
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                name:
+                                    type: string
+                                    description: name of item to create
+                            example:
+                                name: abc
+            responses:
+                201:
+                    description: Successfully created item 
+                    content:
+                        application/json:
+                            schema:
+                                type: object
+                                $ref: '#/components/schemas/Item'
+
+components:
+    schemas:
+        Item:
+            type: object
+            properties:
+                item_id:
+                    type: string
+                    description: Id of the item
+                name: { type: string }
+                timestamp: { type: string }
+
+tags:
+    - name: 'API Example'
+      description: 'API Description'
+
